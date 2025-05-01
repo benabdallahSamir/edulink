@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Introduction to Web Development",
+    "creator": "John Doe",
+    "imageUrl": "../public/courseTest/Placeholder1.png",
+    "price": 49.99,
+    "stars": 4.5,
+    "view": 1200,
+    "oldPrice": 79.99
+  },
+  {
+    "title": "Mastering Python Programming",
+    "creator": "Jane Smith",
+    "imageUrl": "../public/courseTest/Placeholder2.png",
+    "price": 39.99,
+    "stars": 4.7,
+    "view": 1500,
+    "oldPrice": 59.99
+  },
+  {
+    "title": "Data Science and Machine Learning",
+    "creator": "Alice Johnson",
+    "imageUrl": "../public/courseTest/Placeholder3.png",
+    "price": 69.99,
+    "stars": 4.8,
+    "view": 2200,
+    "oldPrice": 89.99
+  },
+  {
+    "title": "Digital Marketing Essentials",
+    "creator": "Bob Lee",
+    "imageUrl": "../public/courseTest/Placeholder4.png",
+    "price": 29.99,
+    "stars": 4.2,
+    "view": 800,
+    "oldPrice": 49.99
+  }
+]
