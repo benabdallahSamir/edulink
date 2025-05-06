@@ -53,7 +53,7 @@ const CourseCard = ({ course, favIcon, menuIcon, completIcon }) => {
     progress,
     // isfavorite = false,
   } = course;
-  console.log(course)
+  console.log(course);
   const totalLectures = course.chapters.length;
   const PriceCond = Boolean(price && oldPrice);
   const dispatch = useDispatch();
@@ -103,7 +103,7 @@ const CourseCard = ({ course, favIcon, menuIcon, completIcon }) => {
   return (
     <div
       onClick={handleCourseClick}
-      className="max-w-sm font-gilroy bg-white overflow-hidden w-[285px] cursor-pointer  "
+      className="max-w-sm font-gilroy bg-white border border-black/40 overflow-hidden w-[285px] shadow-md pb-2 rounded-xl cursor-pointer  "
     >
       <div className="relative rounded-[23] w-full overflow-hidden ">
         {PriceCond && (
@@ -179,7 +179,7 @@ const CourseCard = ({ course, favIcon, menuIcon, completIcon }) => {
           width={0}
           height={0}
           sizes="100%"
-          className="w-full h-full object-cover"
+          className="w-full h-48 rounded-xl border-b border-black object-cover"
         />
       </div>
 
@@ -191,10 +191,10 @@ const CourseCard = ({ course, favIcon, menuIcon, completIcon }) => {
         />
       )}
 
-      {title && <h2 className="text-base font-bold">{title}</h2>}
+      {title && <h2 className=" mx-2 text-base font-bold mt-2">{title}</h2>}
 
       {creator && (
-        <div className="flex items-center">
+        <div className="flex items-center mx-2">
           <PersonOutlineIcon className="h-4 w-4 fill-gray-400" />
           <span className="text-sm font-gilroy font-thin pl-1 text-gray-400">
             {creator}
@@ -211,7 +211,7 @@ const CourseCard = ({ course, favIcon, menuIcon, completIcon }) => {
       )}
 
       {description && (
-        <p className="text-sm font-gilroy font-normal text-gray-500">
+        <p className="text-sm font-gilroy font-normal text-gray-500 mx-2">
           {truncateDescription(description, 100)}
         </p>
       )}

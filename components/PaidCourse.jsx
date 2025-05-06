@@ -62,7 +62,8 @@ const PaidCourse = ({ course, finalPage, review }) => {
       setCourse(data.course);
       setIsCurrent(data.course.progress.chapterNumber);
       setProgress(data.course.progress.chapterNumber);
-      setQuizes(data.course.chapters[progress].queezes);
+      console.log(data.course.chapters[progress].quizzes)
+      setQuizes(data.course.chapters[progress].quizzes);
       setQuizAnswers({});
       setQuizSubmitted(false);
       successNotifcation("submit successfuly");
