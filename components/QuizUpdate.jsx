@@ -71,6 +71,7 @@ function QuizUpdate({
   const [quizzNumber, setQuizzNumber] = useState(0); // this for save the current quizz showed
   const [correctOption, setCorrectOption] = useState(0); // this for the current opt of current quizz showed
   const [quizz, setQuizz] = useState(allQuizzez[quizzNumber]); // this of the current quizz
+  console.log(chapterNumber);
   // ? use effects part
   useEffect(() => {
     setQuizz(allQuizzez[quizzNumber]);
@@ -150,16 +151,14 @@ function QuizUpdate({
   // ? component part
   return (
     <div
+      key={chapterNumber + "parent"}
       className={`w-full h-full absolute top-0 left-0 bg-black/50 place-items-center hidden ${className}`}
     >
-      <div
-        className="bg-white rounded-xl w-[90%] h-[90%] p-3"
-        key={"dqfklehddkdsks" + chapterNumber}
-      >
+      <div className="bg-white rounded-xl w-[90%] h-[90%] p-3">
         <div className="h-[40px] border-b border-gray-300 grid grid-cols-5 gap-2">
           {allQuizzez.map((_, ind) => (
             <p
-              key={"sdhflksqlfdq" + ind}
+              key={chapterNumber + "  " + ind}
               className={`text-center w-full h-full px-2 rounded-t-md duration-300 hover:bg-gray-300 cursor-pointer capitalize
                 ${ind < 4 && "border-r"} ${
                 ind === quizzNumber && "bg-gray-300"
@@ -177,7 +176,10 @@ function QuizUpdate({
         />
         {/* options + correctOne*/}
         {quizz.options.map((ele, ind) => (
-          <div className="w-full mb-4 roudned-md px-2 flex items-center">
+          <div
+            className="w-full mb-4 roudned-md px-2 flex items-center"
+            key={"option" + ind}
+          >
             <Input
               type="text"
               className="grow h-full rounded-md mr-2"

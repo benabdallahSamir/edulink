@@ -9,7 +9,7 @@ const Trending = () => {
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     (async function () {
-      const { status, data } = await bestCourses(2);
+      const { status, data } = await bestCourses(10);
       switch (status) {
         case 10:
           console.log("10");
