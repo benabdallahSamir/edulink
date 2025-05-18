@@ -71,7 +71,6 @@ function QuizUpdate({
   const [quizzNumber, setQuizzNumber] = useState(0); // this for save the current quizz showed
   const [correctOption, setCorrectOption] = useState(0); // this for the current opt of current quizz showed
   const [quizz, setQuizz] = useState(allQuizzez[quizzNumber]); // this of the current quizz
-  console.log(chapterNumber);
   // ? use effects part
   useEffect(() => {
     setQuizz(allQuizzez[quizzNumber]);

@@ -32,11 +32,11 @@ const Courses = () => {
     })();
   }, []);
   return (
-    <div className="w-full flex flex-col items-center mb-8 py-8 ">
+    <div className="w-full flex flex-col items-center  mb-8 py-8 ">
       <h1 className="text-3xl font-gilroy font-bold mb-8">
         Browse Our Top Courses
       </h1>
-      <div className="flex justify-around flex-wrap gap-4">
+      <div className="flex justify-start px-[6%] flex-wrap gap-4">
         {courses.map((course, i) => (
           <CourseCard
             key={i}
