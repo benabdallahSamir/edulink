@@ -350,9 +350,11 @@ const Navbar = () => {
                       Services Hub
                     </DropdownMenuItem>
 
+                    <DropdownMenuSeparator className="bg-gray-300 w-[95%] mx-auto" />
+
                     {!user?.isteacher && (
                       <DropdownMenuItem
-                        className="cursor-pointer hover:bg-slate-200 transition-colors"
+                        className="cursor-pointer bg-green-700 hover:bg-green-500 text-white rounded-md transition-colors"
                         onClick={handleInstructorClick}
                       >
                         Become Instructor

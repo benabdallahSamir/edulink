@@ -8,15 +8,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { buyNewCourse, setFavoriteCourse } from "@/request/courses";
-import page  from "@/public/page.svg";
-import lect  from "@/public/lecture.svg";
-import lang  from "@/public/langSound.svg";
-import screen  from "@/public/screen.svg";
+import page from "@/public/page.svg";
+import lect from "@/public/lecture.svg";
+import lang from "@/public/langSound.svg";
+import screen from "@/public/screen.svg";
 import { genProfileImg } from "@/public/avatars/avatar";
 import { errorNotifcation, successNotifcation } from "./toast";
 
-const UnpaidCourse = ({ course,setRefresh , review }) => {
-
+const UnpaidCourse = ({ course, setRefresh, review }) => {
   const [favorite, setFavorite] = useState(course.isFavorite);
   const handleFavorite = async () => {
     const { status, data } = await setFavoriteCourse(course.id);
@@ -59,10 +58,7 @@ const UnpaidCourse = ({ course,setRefresh , review }) => {
           {/* Video Player */}
           <div className="relative aspect-video bg-black mb-6 rounded-3xl overflow-hidden">
             <video className="w-full h-full" poster={course.picture} controls>
-              <source
-                src={course.introduction.link}
-                type="video/mp4"
-              />
+              <source src={course.introduction.link} type="video/mp4" />
             </video>
           </div>
 
@@ -78,7 +74,9 @@ const UnpaidCourse = ({ course,setRefresh , review }) => {
                     src={genProfileImg(course.userPicture)}
                     alt={course.username}
                   />
-                  <AvatarFallback>course.username.subString(0,2)</AvatarFallback>
+                  <AvatarFallback>
+                    course.username.subString(0,2)
+                  </AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col items-start">
                   <span className="text-sm font-medium text-[#3DCBB1]">
@@ -102,29 +100,34 @@ const UnpaidCourse = ({ course,setRefresh , review }) => {
 
           {/* Reviews */}
           <div className="mb-8">
-                <h2 className="text-md font-bold mb-1">Review</h2>
-                <div className="space-y-6">
-                  {review.map((rv, index) => (
-                    <div key={index} className="flex gap-4">
-                      <Avatar>
-                        <AvatarImage
-                          src={genProfileImg(rv.user.picture)}
-                          alt={rv.user.username}
-                        />
-                        <AvatarFallback>{rv.user.username[0]}</AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <h3 className="font-medium text-sm text-[#3DCBB1]">
-                          {rv.user.username}
-                        </h3>
-                        <p className="text-sm text-gray-500 font-normal">
-                          {rv.message}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+            <h2 className="text-md font-bold mb-1">Review</h2>
+            <div className="space-y-6">
+              {review.length === 0 && (
+                <p className="text-sm text-gray-500 font-normal">
+                  No reviews yet.
+                </p>
+              )}
+              {review.map((rv, index) => (
+                <div key={index} className="flex gap-4">
+                  <Avatar>
+                    <AvatarImage
+                      src={genProfileImg(rv.user.picture)}
+                      alt={rv.user.username}
+                    />
+                    <AvatarFallback>{rv.user.username[0]}</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h3 className="font-medium text-sm text-[#3DCBB1]">
+                      {rv.user.username}
+                    </h3>
+                    <p className="text-sm text-gray-500 font-normal">
+                      {rv.message}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Sidebar */}
@@ -181,7 +184,9 @@ const UnpaidCourse = ({ course,setRefresh , review }) => {
                 <div className="grid grid-row-2 md:grid-row-4 gap-2 mt-4">
                   <div className="flex items-center gap-2">
                     <Image src={page} alt="page" width="20px" height="20px" />
-                    <p className="text-md text-muted-foreground">{course.chapterNumber} Section</p>
+                    <p className="text-md text-muted-foreground">
+                      {course.chapterNumber} Section
+                    </p>
                   </div>
                   <div className="flex items-center gap-2">
                     <Image src={lect} alt="lect" width="20px" height="20px" />

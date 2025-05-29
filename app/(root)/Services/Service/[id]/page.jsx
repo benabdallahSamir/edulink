@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { notFound, useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -12,15 +12,16 @@ import { addOffer, getServiceById } from "@/request/marketPlace";
 import { errorNotifcation, successNotifcation } from "@/components/toast";
 import { useSelector } from "react-redux";
 
-
-
 const ServicePage = () => {
+  // Hooks must always be called at the top level
   const { id } = useParams();
   const router = useRouter();
-  const {isLoggin} = useSelector(s=>s.user);
+  const { isLoggin } = useSelector((s) => s.user);
+
   const [service, setService] = useState(null);
   const [refresh, setRefresh] = useState(false);
 
+  // Fetch service data
   useEffect(() => {
     (async function () {
       const { status, data } = await getServiceById(id);
@@ -38,34 +39,32 @@ const ServicePage = () => {
           errorNotifcation(data.message);
       }
     })();
-  }, [refresh]);
+  }, [id, refresh]); // Ensure `id` is included in the dependency array
 
-  if (!service) return <Loading />;
-
+  // Redirect to login if not logged in
   async function applyForService(formData) {
-
-    // if is not loged ==> redirect to Sign up page
     if (!isLoggin) {
       router.push("/auth/Login");
-      return ;
+      return;
     }
-    
-    // if is loged ==> add proposal to service
-    const {status, data} = await addOffer(Object.fromEntries(formData));
+
+    const { status, data } = await addOffer(Object.fromEntries(formData));
 
     switch (status) {
-      case 200 : 
+      case 200:
         successNotifcation(data.message);
-        setRefresh(curr=>!curr);
-        break; 
-      case 10 :
-        errorNotifcation("error woth code 10");
-        break; 
-      default : 
+        setRefresh((curr) => !curr);
+        router.push(`/Services`);
+        break;
+      case 10:
+        errorNotifcation("error with code 10");
+        break;
+      default:
         errorNotifcation(data.message);
     }
-    
   }
+
+  if (!service) return <Loading />;
 
   return (
     <div className="w-full max-w-[700px] px-4 sm:px-6 mx-auto font-gilroy my-4 sm:my-8">
@@ -94,13 +93,13 @@ const ServicePage = () => {
                   <span>{service.location}</span> •
                 </>
               )}
-              <span>{` ${service.createdAt}`}</span>
+              <span>{new Date(service.createdAt).toLocaleDateString()}</span>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mb-4">
-            {service.tags.map((tag) => (
+            {service.tags?.map((tag, index) => (
               <Badge
-                key={tag}
+                key={`${tag}-${index}`}
                 variant="outline"
                 className="text-green-500 capitalize font-gilroy text-xs sm:text-sm"
               >
@@ -109,8 +108,9 @@ const ServicePage = () => {
             ))}
           </div>
           <div className="text-xs sm:text-sm text-gray-600 font-gilroy">
-            <span className="font-semibold">{service.offers.length}</span> proposal
-            {service.offers.length > 1 ? "s" : ""} received
+            <span className="font-semibold">{service.offers?.length || 0}</span>{" "}
+            proposal
+            {service.offers?.length > 1 ? "s" : ""} received
           </div>
         </div>
       </motion.div>
@@ -124,7 +124,11 @@ const ServicePage = () => {
           Apply for this Service
         </h2>
         <form
-          action={applyForService}
+          onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            applyForService(formData);
+          }}
           className="space-y-3 sm:space-y-4 font-gilroy"
         >
           <input type="hidden" name="serviceId" value={service.id} />

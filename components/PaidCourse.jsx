@@ -62,7 +62,7 @@ const PaidCourse = ({ course, finalPage, review }) => {
       setCourse(data.course);
       setIsCurrent(data.course.progress.chapterNumber);
       setProgress(data.course.progress.chapterNumber);
-      console.log(data.course.chapters[progress].quizzes)
+      console.log(data.course.chapters[progress].quizzes);
       setQuizes(data.course.chapters[progress].quizzes);
       setQuizAnswers({});
       setQuizSubmitted(false);
@@ -155,7 +155,10 @@ const PaidCourse = ({ course, finalPage, review }) => {
                     </div>
                   ))}
                 </div>
-                <Button className="w-full mt-6" onClick={handleQuizSubmit}>
+                <Button
+                  className="w-full mt-6 bg-green-700 text-white hover:bg-green-500 ease-in-out duration-200"
+                  onClick={handleQuizSubmit}
+                >
                   Submit All Answers
                 </Button>
               </div>

@@ -29,7 +29,7 @@ const Signup = () => {
     switch (status) {
       case 201:
         successNotifcation("user creat successfuly");
-        route.push("/auth/UserChoice");
+        route.push("/");
         break;
       case 500:
         errorNotifcation("internal server erroe");

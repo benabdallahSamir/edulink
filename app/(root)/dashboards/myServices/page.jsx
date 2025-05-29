@@ -1,14 +1,13 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import {useState , useEffect} from "react"
-import { errorNotifcation } from '@/components/toast'
-import { myServices } from '@/request/marketPlace'
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { useState, useEffect } from "react";
+import { errorNotifcation } from "@/components/toast";
+import { myServices } from "@/request/marketPlace";
 // Mock data (would typically come from a database)
-
 
 const MyServices = () => {
   const [services, setServices] = useState([]);
@@ -33,7 +32,7 @@ const MyServices = () => {
   }, []);
   return (
     <div className="w-[95%] md:w-[90%] max-w-[1200px] font-gilroy mx-auto px-4 sm:px-6 py-4 sm:py-8">
-      <motion.h1 
+      <motion.h1
         className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-8 text-center"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -42,7 +41,7 @@ const MyServices = () => {
         My Posted Services
       </motion.h1>
       <div className="space-y-4">
-        {services.map((service, index) => (
+        {[...services].reverse().map((service, index) => (
           <motion.div
             key={service.id}
             className="border rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow bg-white flex flex-row sm:flex-row items-start sm:items-center p-4 sm:p-6"
@@ -70,7 +69,8 @@ const MyServices = () => {
                   </span>
                 </div>
                 <div className="text-xs sm:text-sm text-gray-500">
-                  <span>{service.location}</span> • <span>{service.createdAt}</span>
+                  <span>{service.location}</span> •{" "}
+                  <span>{service.createdAt}</span>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2 mb-4">
@@ -85,7 +85,8 @@ const MyServices = () => {
                 ))}
               </div>
               <div className="text-xs sm:text-sm text-gray-600">
-                {service.offers.length} proposal{service.offers.length > 1 ? "s" : ""}
+                {service.offers.length} proposal
+                {service.offers.length > 1 ? "s" : ""}
               </div>
             </div>
             <Link
@@ -100,7 +101,7 @@ const MyServices = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MyServices
+export default MyServices;

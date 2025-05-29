@@ -13,14 +13,18 @@ import {
 } from "@/components/ui/select";
 import { addService } from "@/request/marketPlace";
 import { errorNotifcation, successNotifcation } from "@/components/toast";
+import { useRouter } from "next/navigation";
 
 const PostService = () => {
+  const router = useRouter();
+
   async function postService(formData) {
     // Here you would typically save the data to a database
     const { status, data } = await addService(Object.fromEntries(formData));
     switch (status) {
       case 201:
         successNotifcation(data.message);
+        router.push("/Services");
         break;
       case 10:
         errorNotifcation("error with code 10");

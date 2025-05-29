@@ -96,7 +96,6 @@ const CourseFinalPage = () => {
     setIsSubmitted(true);
   };
 
-
   return (
     <div className="container mx-auto py-10 px-4 sm:px-6 lg:px-8 font-gilroy">
       <AnimatePresence>
@@ -185,7 +184,7 @@ const CourseFinalPage = () => {
               <div className="space-y-4">
                 {result.map((quiz, index) => (
                   <div
-                    key={index}
+                    key={`${quiz.name}-${index}`} // Use a combination of quiz.name and index for a unique key
                     className="flex justify-between items-center"
                   >
                     <span>{quiz.name}</span>

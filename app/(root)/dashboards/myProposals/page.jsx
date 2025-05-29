@@ -17,7 +17,7 @@ const MyProposals = () => {
       const { status, data } = await myProposal();
       if (status === 200) {
         setProposals(data.offers);
-        console.log(data)
+        console.log(data);
       } else {
         errorNotifcation(data.message);
       }
@@ -34,7 +34,7 @@ const MyProposals = () => {
         My Proposals
       </motion.h1>
       <div className="space-y-6">
-        {proposals.map((proposal, index) => (
+        {[...proposals].reverse().map((proposal, index) => (
           <motion.div
             key={proposal.id}
             initial={{ opacity: 0, y: 50 }}
